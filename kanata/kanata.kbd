@@ -1,96 +1,67 @@
-;;==========================================================================;;
-;;                                                                          ;;
-;;  With Arsenik, choose the features you want for your keyboard:           ;;
-;;  angle mods, Vim-like navigation layer, Mac/Azerty/Qwertz support, etc.  ;;
-;;                                                                          ;;
-;;==========================================================================;;
-
-;; Every section is mandatory and should enable one and only one `include`
-;; - enable each feature by un-commenting the related line.
-;; - a commented line starts with ;;
-
-;; Live-reload the configuration with Space+Backspace (requires layer-taps).
-
-;; Timing variables for tap-hold effects.
 (defvar
   ;; The key must be pressed twice in 200ms to enable repetitions.
-  tap_timeout 200
+  tap_timeout       200
   ;; The key must be held 200ms to become a layer shift.
-  hold_timeout 200
+  hold_timeout      200
   ;; Slightly higher value for typing keys, to prevent unexpected hold effect.
   long_hold_timeout 300
+  chord_timeout     50
+  dance_timeout     200
 )
 
-;;-----------------------------------------------------------------------------
-;; Original key arrangement on your keyboard: Mac or PC.
-;; Choose here if you want to add an angle mod: ZXCVB are shifted to the left.
-;; See https://colemakmods.github.io/ergonomic-mods/angle.html for more details.
+(defsrc
+  tab  q    w    e    r        u    i    o    p    [
+  caps a    s    d    f        j    k    l    ;    '
+  lsft <    z    x    c    b   m    ,    .    /    rsft
+            lmet lalt spc      ralt
+)
 
-(include defsrc/pc.kbd)  ;; PC, standard finger assignment
-;; (include defsrc/mac.kbd)  ;; Mac, standard finger assignment
-;; (include defsrc/pc_anglemod.kbd)  ;; PC, ZXCVB are shifted to the left
-;; (include defsrc/mac_anglemod.kbd)  ;; Mac, ZXCVB are shifted to the left
-;; (include defsrc/pc_wide_anglemod.kbd)  ;; PC, angle-mod + right hand shifted by one key
-;; (include defsrc/mac_wide_anglemod.kbd)  ;; Mac, angle-mod + right hand shifted by one key
-;; (include defsrc/pc_ultrawide_anglemod.kbd)  ;; PC, angle-mod + left & right hand shifted by one key
-;; (include defsrc/mac_ultrawide_anglemod.kbd)  ;; Mac, angle-mod + left & right hand shifted by one key
+(deflayer base
+  q   w    e    r    t         y    u    i    o    p
+  a   s    d    f    g         h    j    k    l    ;
+;; ⚠️ 'v' instead of 'b' because using ergo-l iso variant
+  @z  z    @del c    v   lrld  n    m    ,    .    /
+            @ctl @alt @sft      @sym
+)
 
+(include defalias/ergol_pc.kbd)
 
-;;-----------------------------------------------------------------------------
-;; `Base` layer: standard or dual keys? (layer-taps, homerow mods?)
-;; If you just want angle mod, you still have to enable the standard base.
+(deflayer nav
+  bck  fwd  @7   @8   @9       pgdn  pgup up   home end
+  lctl lsft @4   @5   @6       @.    lft  down rght tab
+  caps @0   @1   @2   @3   _   @+    @-   @/   @*   S-tab
+            @ctl @alt @sft      @sym
+)
 
-(include deflayer/base.kbd)  ;; standard keyboard behavior
-;; (include deflayer/base_lt.kbd)  ;; layer-taps on both thumb keys
-;; (include deflayer/base_lt_hrm.kbd)  ;; layer-taps + home-row mods
+(defalias
+  ;; q    (tap-hold-press $tap_timeout $hold_timeout q lsft)
+  ;; a    (tap-hold-press $tap_timeout $hold_timeout a lctl)
+  z    (tap-dance $dance_timeout (< C-<))
+  del  (tap-hold-press $tap_timeout $hold_timeout del lmet)
+  
+  ctl  (tap-hold-press $tap_timeout $hold_timeout tab lctl)
+  alt  (tap-hold-press $tap_timeout $hold_timeout bspc lalt)
+  sft  (tap-hold-press $tap_timeout $hold_timeout spc lsft)
+  sym  (tap-hold-press $tap_timeout $hold_timeout ret ralt)
+  base (layer-switch base)
+  nav  (layer-switch nav)
+)
 
-;; Note: not enabling layer-taps here makes the rest of the file useless.
-
-
-;;-----------------------------------------------------------------------------
-;; `Symbols` layer
-
-(include deflayer/symbols_noop.kbd)  ;; AltGr stays as-is
-;; (include deflayer/symbols_lafayette.kbd)  ;; AltGr programmation layer like Ergo‑L
-;; (include deflayer/symbols_noop_num.kbd)  ;; AltGr stays as-is + NumRow layers
-;; (include deflayer/symbols_lafayette_num.kbd)  ;; AltGr prog layer + NumRow layers
-
-
-;;-----------------------------------------------------------------------------
-;; `Navigation` layer: ESDF or HJKL?
-
-(include deflayer/navigation.kbd)  ;; ESDF on the left, NumPad on the right
-;; (include deflayer/navigation_vim.kbd)  ;; HJKL + NumPad on [Space]+[Q]
-
-;; Replace XX by the keyboard shortcut of your application launcher, if any.
-;; Mapped on [Space]+[P] in both navigation layers.
-
-;; (defalias run M-p)  ;; [Command]-[P]
-(defalias run XX)  ;; do nothing
-
-
-;;-----------------------------------------------------------------------------
-;; Aliases for `Symbols` and `Navigation` layers
-;; Depends on PC/Mac and keyboard layout
-
-(include defalias/ergol_pc.kbd)  ;; Ergo‑L PC
-;; (include defalias/qwerty-lafayette_pc.kbd)  ;; Qwerty‑Lafayette PC
-;; (include defalias/qwerty_pc.kbd)  ;; Qwerty / Colemak PC
-;; (include defalias/qwerty_mac.kbd)  ;; Qwerty / Colemak Mac
-;; (include defalias/azerty_pc.kbd)  ;; Azerty PC
-;; (include defalias/qwertz_pc.kbd)  ;; Qwertz PC
-;; (include defalias/bepo_pc.kbd)  ;; Bépo PC
-;; (include defalias/optimot_pc.kbd)  ;; Optimot PC
-
-;;-----------------------------------------------------------------------------
-;; Extra configuration
-;; You should not modify this, only if you need to.
+(defchordsv2
+  ;; Map evil copilot key to Sft
+  (lsft lmet f23) (switch
+    ((layer base)) (layer-switch nav)  break
+    ((layer nav))  (layer-switch base) break
+  ) 10 first-release ()
+  (tab q) esc  $chord_timeout first-release ()
+  (q w)   tab  $chord_timeout first-release ()
+  (o p)   bspc $chord_timeout first-release ()
+)
 
 (defcfg
   ;; Enabled makes kanata process keys that are not defined in defsrc
   ;; Fixes altgr for Windows (see Arsenik issue #22)
   process-unmapped-keys yes
   windows-altgr cancel-lctl-press
+  concurrent-tap-hold true ;; for defchordsv2 to work
 )
-
-;; vim: set ft=lisp
