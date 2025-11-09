@@ -82,8 +82,9 @@
     ((layer navigation_held)) (layer-switch base      ) break
   ) 10 first-release ()
   (tab q) esc  $chord_timeout first-release ()
-  (q w)   tab  $chord_timeout first-release ()
-  (o p)   bspc $chord_timeout first-release ()
+  (q   w) tab  $chord_timeout first-release ()
+  (o   p) bspc $chord_timeout first-release ()
+  (l   ;) ret  $chord_timeout first-release ()
 )
 
 (defcfg
