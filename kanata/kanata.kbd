@@ -10,48 +10,76 @@
 )
 
 (defsrc
-  tab  q    w    e    r        u    i    o    p    [
-  caps a    s    d    f        j    k    l    ;    '
-  lsft <    z    x    c    b   m    ,    .    /    rsft
-            lmet lalt spc      ralt
+  tab   q     w     e     r               u     i     o     p     [
+  caps  a     s     d     f               j     k     l     ;     '
+  lsft  <     z     x     c       b       m     ,     .     /  rsft
+              lmet  lalt  spc          ralt
 )
 
 (deflayer base
-  q   w    e    r    t         y    u    i    o    p
-  a   s    d    f    g         h    j    k    l    ;
+  q     w     e     r     t               y     u     i     o     p
+  @lsft s     d     @ff   @gg             h     j     k     l @rsft
 ;; ⚠️ 'v' instead of 'b' because using ergo-l iso variant
-  @z  z    @del c    v   lrld  n    m    ,    .    /
-            @ctl @alt @sft      @sym
+  @zz   z     lmet  c     v     lrld      n     m     ,     .     /
+              @ctl  @alt  @sft         @sym
 )
 
 (include defalias/ergol_pc.kbd)
 
-(deflayer nav
-  bck  fwd  @7   @8   @9       pgdn  pgup up   home end
-  lctl lsft @4   @5   @6       @.    lft  down rght tab
-  caps @0   @1   @2   @3   _   @+    @-   @/   @*   S-tab
-            @ctl @alt @sft      @sym
+(deflayer navigation_held
+  caps  bck   fwd   XX    XX           pgup   ins    up  home   end
+  lctl  lalt  lsft  XX    @hdnu        pgdn   lft  down  rght    XX
+  C-<   XX    _     @lkna XX      _      XX    XX    XX    XX    XX
+              @ctl  @alt  @sft         @sym
+)
+(deflayer navigation_locked
+  caps  bck   fwd   XX    XX           pgup   ins    up  home   end
+  lctl  lalt  lsft  XX    @lknu        pgdn   lft  down  rght    XX
+  C-<   XX    _     XX    @base   _      XX    XX    XX    XX    XX
+              @ctl  @alt  @sft         @sym
+)
+
+(deflayer numpad_held
+  @1    @2    @3    @4    @5              @6   @7    @8    @9    @0
+  lctl  lalt  lsft  @hdna XX              @\   @4    @5    @6    @+
+  C-<   XX    XX    @lknu XX      _       @*   @1    @2    @3    @.
+              @ctl  @alt  @sft            @sym
+)
+(deflayer numpad_locked
+  @1    @2    @3    @4    @5              @6   @7    @8    @9    @0
+  lctl  lalt  lsft  @lkna XX              @\   @4    @5    @6    @+
+  C-<   XX    _     XX    @base   _       @*   @1    @2    @3    @.
+              @ctl  @alt  @sft            @sym
 )
 
 (defalias
-  ;; q    (tap-hold-press $tap_timeout $hold_timeout q lsft)
-  ;; a    (tap-hold-press $tap_timeout $hold_timeout a lctl)
-  z    (tap-dance $dance_timeout (< C-<))
-  del  (tap-hold-press $tap_timeout $hold_timeout del lmet)
+  base  (layer-switch base)
+  ;; hold navigation
+  hdna  (layer-switch navigation_held)
+  ;; lock navigation
+  lkna  (multi (release-key d) (layer-switch navigation_held) (layer-switch navigation_locked))
+  ;; hold numpad
+  hdnu  (layer-switch numpad_held)
+  ;; lock numpad
+  lknu  (multi (release-key f) (layer-switch numpad_locked))
+
+  lsft (tap-hold-press $tap_timeout $long_hold_timeout a lsft)
+  rsft (tap-hold-press $tap_timeout $long_hold_timeout ; rsft)
+  ff   (tap-hold       $tap_timeout $long_hold_timeout f (layer-while-held navigation_held))
+  gg   (tap-hold       $tap_timeout $long_hold_timeout g (layer-while-held numpad_held))
+  zz   (tap-dance      $dance_timeout                  (< C-<))
   
-  ctl  (tap-hold-press $tap_timeout $hold_timeout tab lctl)
-  alt  (tap-hold-press $tap_timeout $hold_timeout bspc lalt)
-  sft  (tap-hold-press $tap_timeout $hold_timeout spc lsft)
-  sym  (tap-hold-press $tap_timeout $hold_timeout ret ralt)
-  base (layer-switch base)
-  nav  (layer-switch nav)
+  ctl  (tap-hold-press $tap_timeout $hold_timeout      tab  lctl)
+  alt  (tap-hold-press $tap_timeout $hold_timeout      bspc lalt)
+  sft  (tap-hold-press $tap_timeout $hold_timeout      spc  lsft)
+  sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
 )
 
 (defchordsv2
   ;; Map evil copilot key to Sft
   (lsft lmet f23) (switch
-    ((layer base)) (layer-switch nav)  break
-    ((layer nav))  (layer-switch base) break
+    ((layer base      )) (layer-switch navigation_held) break
+    ((layer navigation_held)) (layer-switch base      ) break
   ) 10 first-release ()
   (tab q) esc  $chord_timeout first-release ()
   (q w)   tab  $chord_timeout first-release ()
