@@ -31,14 +31,14 @@
 
 (deflayer navigation_held
   caps  @alts @ctls bck   fwd          pgup   ins    up  home   end
-  lmet  lalt  lctl  lsft  XX           pgdn   lft  down  rght    XX
-  C-<   XX    XX    XX    XX      _      XX    XX    XX    XX    XX
+  lmet  lalt  lctl  lsft  @zoin        pgdn   lft  down  rght    XX
+  C-<   XX    XX    XX    @zoot   _      XX    XX    XX    XX    XX
                     tab   @lkna @base @hdnu
 )
 (deflayer navigation_locked
   caps  @alts @ctls bck   fwd          pgup   ins    up  home   end
-  lmet  lalt  lctl  lsft  XX           pgdn   lft  down  rght    XX
-  C-<   XX    XX    XX    XX      _      XX    XX    XX    XX    XX
+  lmet  lalt  lctl  lsft  @zoin        pgdn   lft  down  rght    XX
+  C-<   XX    XX    XX    @zoot   _      XX    XX    XX    XX    XX
                     tab   bspc  @base @lknu
 )
 
@@ -78,6 +78,8 @@
   nav  (tap-hold-press $tap_timeout $hold_timeout      spc  (layer-while-held navigation_held))
   sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
 
+  zoin C-+
+  zoot C-x
   base (tap-hold       $tap_timeout $hold_timeout      spc  (layer-switch base))
   ;; Hold navigation
   hdna (layer-while-held navigation_held)
