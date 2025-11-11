@@ -21,7 +21,7 @@
   @aa   @ss   @dd   @ff   g               h   @jj   @kk   @ll @rmet
 ;; ⚠️ 'v' instead of 'b' because using ergo-l iso variant
   @zz   z     x     c     v     lrld      n     m     ,     .     /
-                    @ctl  @sft  @nav   @sym ;;cop
+                    @ctl  @alt  @nav   @sym ;;cop
 ;;laptop:           tab   bspc   spc    del   ret
 ;;ergo:       ctl   sft   ??            num   sym   nav
 ;;ergo:       bspc  spc   tab          bspc   del   ret
@@ -29,26 +29,14 @@
 
 (include defalias/ergol_pc.kbd)
 
-;; (defvirtualkeys
-;;   ctl lctl
-;;   sft lsft
-;;   alt lalt
-;; )
-
 (deflayer navigation_held
-  caps  bck   fwd   XX    XX           pgup   ins    up  home   end
+  caps  @alts @ctls bck   fwd          pgup   ins    up  home   end
   lmet  lalt  lctl  lsft  XX           pgdn   lft  down  rght    XX
   C-<   XX    XX    XX    XX      _      XX    XX    XX    XX    XX
                     tab   @lkna @base @hdnu
 )
-;; (deflayer navigation_mod
-;;   @rs   @rs   @rs   @rs   XX             XX    XX    up    XX    XX
-;;   @rs   @rs   @rs   @rs   XX             XX   lft  down  rght    XX
-;;   XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX
-;;                     XX    XX     @rs     XX
-;; )
 (deflayer navigation_locked
-  caps  bck   fwd   XX    XX           pgup   ins    up  home   end
+  caps  @alts @ctls bck   fwd          pgup   ins    up  home   end
   lmet  lalt  lctl  lsft  XX           pgdn   lft  down  rght    XX
   C-<   XX    XX    XX    XX      _      XX    XX    XX    XX    XX
                     tab   bspc  @base @lknu
@@ -68,63 +56,49 @@
 )
 
 (defalias
-  ww   w
-  ee   e
-  ;; ;; Alt-Shit with arrows
-  ;; ww   (tap-hold       $tap_timeout $long_hold_timeout w (
-  ;;   multi
-  ;;     (on-press press-virtualkey alt)
-  ;;     (on-press press-virtualkey sft)
-  ;;     (layer-switch  navigation_mod)))
-  ;; ;; Ctrl-Shit with arrows
-  ;; ee   (tap-hold       $tap_timeout $long_hold_timeout e (
-  ;;   multi
-  ;;     (on-press press-virtualkey ctl)
-  ;;     (on-press press-virtualkey sft)
-  ;;     (layer-switch  navigation_mod)))
-  ;; Release Ctrl-Shift
-  ;; rs (multi
-  ;;   (on-press release-virtualkey ctl)
-  ;;   (on-press release-virtualkey alt)
-  ;;   (on-press release-virtualkey sft)
-  ;;   (layer-switch base))
+  ;; ;; Alt-Shit with arrowslayer-while-held
+  ww   (tap-hold       $tap_timeout $long_hold_timeout w (multi lalt lsft (layer-while-held navigation_held)))
+  ;; Ctrl-Shit with arrows
+  ee   (tap-hold       $tap_timeout $long_hold_timeout e (multi lctl lsft (layer-while-held navigation_held)))
 
   aa   (tap-hold       $tap_timeout $long_hold_timeout a lmet)
   ss   (tap-hold       $tap_timeout $long_hold_timeout s lalt)
   dd   (tap-hold       $tap_timeout $long_hold_timeout d lctl)
   ff   (tap-hold-press $tap_timeout $long_hold_timeout f lsft)
   jj   (tap-hold-press $tap_timeout $long_hold_timeout j lsft)
-  kk   (tap-hold-press $tap_timeout $long_hold_timeout k lctl)
+  kk   (tap-hold       $tap_timeout $long_hold_timeout k lctl)
   ll   (tap-hold       $tap_timeout $long_hold_timeout l lalt)
   rmet (tap-hold       $tap_timeout $long_hold_timeout ; lmet)
 
   ;; Double tap on Z → undo
   zz   (tap-dance      $dance_timeout                  (< C-<))
   
-  ctl  (tap-hold       $tap_timeout $hold_timeout      tab  lctl)
-  sft  (tap-hold-press $tap_timeout $hold_timeout      bspc lsft)
-  nav  (tap-hold       $tap_timeout $hold_timeout      spc  (layer-while-held navigation_held))
+  ctl  (tap-hold-press $tap_timeout $hold_timeout      tab  lctl)
+  alt  (tap-hold-press $tap_timeout $hold_timeout      bspc lalt)
+  nav  (tap-hold-press $tap_timeout $hold_timeout      spc  (layer-while-held navigation_held))
   sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
 
   base (tap-hold       $tap_timeout $hold_timeout      spc  (layer-switch base))
   ;; Hold navigation
-  hdna  (layer-while-held navigation_held)
+  hdna (layer-while-held navigation_held)
   ;; Hold numpad
-  hdnu  (multi
+  hdnu (multi
     (release-layer navigation_held)
     (layer-while-held numpad_held))
   ;; Lock navigation
-  lkna  (multi 
+  lkna (multi 
     (release-layer navigation_held)
     (layer-switch navigation_locked))
   ;; Lock numpad
-  lknu  (multi
+  lknu (multi
     (release-layer numpad_held)
     (layer-switch numpad_locked))
+  alts (multi lalt lsft)
+  ctls (multi lctl lsft)
 )
 
 (defchordsv2
-  ;; Map evil copilot key to Sft
+  ;; Map evil copilot key to Return
   (lsft lmet f23) ret 10 first-release ()
   (tab q) esc  $chord_timeout first-release ()
   (q   w) tab  $chord_timeout first-release ()
