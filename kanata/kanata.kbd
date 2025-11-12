@@ -10,9 +10,9 @@
 )
 
 (defsrc
-  tab   q     w     e     r               u     i     o     p     [
-  caps  a     s     d     f               j     k     l     ;     '
-  lsft  <     z     x     c       b       m     ,     .     /  rsft
+  q     w     e     r     t               u     i     o     p     [
+  a     s     d     f     g               j     k     l     ;     '
+  <     z     x     c     v       b       m     ,     .     /  rsft
                     lmet  lalt   spc   ralt ;;cop
 )
 
@@ -102,8 +102,8 @@
 (defchordsv2
   ;; Map evil copilot key to Return
   (lsft lmet f23) ret 10 first-release ()
-  (tab q) esc  $chord_timeout first-release ()
-  (q   w) tab  $chord_timeout first-release ()
+  (q   w) esc  $chord_timeout first-release ()
+  (w   e) tab  $chord_timeout first-release ()
   (o   p) bspc $chord_timeout first-release ()
   (l   ;) ret  $chord_timeout first-release ()
 )
