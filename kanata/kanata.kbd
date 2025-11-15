@@ -19,8 +19,7 @@
 (deflayer base
   q     @ww   @ee   r     t               y     u     i     o     p
   @aa   @ss   @dd   @ff   g               h   @jj   @kk   @ll @rmet
-;; ⚠️ 'v' instead of 'b' because using ergo-l iso variant
-  @zz   z     x     c     v     lrld      n     m     ,     .     /
+  @zz   x     c     v     b     lrld      n     m     ,     .     /
                     @ctl  @alt  @nav   @sym ;;cop
 ;;laptop:           tab   bspc   spc    del   ret
 ;;ergo:       ctl   sft   ??            num   sym   nav
@@ -32,26 +31,26 @@
 (deflayer navigation_held
   caps  @alts @ctls bck   fwd          pgup   ins    up  home   end
   lmet  lalt  lctl  lsft  @zoin        pgdn   lft  down  rght    XX
-  C-<   XX    XX    XX    @zoot   _      XX    XX    XX    XX    XX
+  C-z   XX    XX    XX    @zoot   _      XX    XX    XX    XX    XX
                     tab   @lkna @base @hdnu
 )
 (deflayer navigation_locked
   caps  @alts @ctls bck   fwd          pgup   ins    up  home   end
   lmet  lalt  lctl  lsft  @zoin        pgdn   lft  down  rght    XX
-  C-<   XX    XX    XX    @zoot   _      XX    XX    XX    XX    XX
+  C-z   XX    XX    XX    @zoot   _      XX    XX    XX    XX    XX
                     tab   bspc  @base @lknu
 )
 
 (deflayer numpad_held
   @1    @2    @3    @4    @5             @6    @7    @8    @9    @0
   lmet  lalt  lctl  lsft  XX             @\    @4    @5    @6    @+
-  C-<   ralt  XX    XX    XX      _      @*    @1    @2    @3    @.
+  C-z   ralt  XX    XX    XX      _      @*    @1    @2    @3    @.
                     tab   @lknu @base @hdna
 )
 (deflayer numpad_locked
   @1    @2    @3    @4    @5             @6    @7    @8    @9    @0
   lmet  lalt  lctl  lsft  XX             @\    @4    @5    @6    @+
-  C-<   ralt  XX    XX    XX      _      @*    @1    @2    @3    @.
+  C-z   ralt  XX    XX    XX      _      @*    @1    @2    @3    @.
                     tab   bspc  @base @lkna
 )
 
@@ -71,7 +70,7 @@
   rmet (tap-hold       $tap_timeout $long_hold_timeout ; lmet)
 
   ;; Double tap on Z → undo
-  zz   (tap-dance      $dance_timeout                  (< C-<))
+  zz   (tap-dance      $dance_timeout                  (z C-z))
   
   ctl  (tap-hold-press $tap_timeout $hold_timeout      tab  lctl)
   alt  (tap-hold-press $tap_timeout $hold_timeout      bspc lalt)
