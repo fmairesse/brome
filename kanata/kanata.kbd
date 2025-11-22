@@ -54,7 +54,7 @@
   sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
 
   zoin C-+
-  zoot C-x
+  zoot C-c
   base (tap-hold       $tap_timeout $hold_timeout      spc  (layer-switch base))
 
   alts (multi lalt lsft)
