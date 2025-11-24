@@ -10,55 +10,67 @@
 )
 
 (defsrc
-  q     w     e     r     t               u     i     o     p     [
-  a     s     d     f     g               j     k     l     ;     '
-  <     z     x     c     v       b       m     ,     .     /  rsft
-  lctl              lmet  lalt   spc   ralt ;;cop
+  q     w     e     r     t               y    u     i     o     p     [
+  a     s     d     f     g               h    j     k     l     ;     '
+  <     z     x     c     v       b       n    m     ,     .     /  rsft
+  lctl                    lalt   spc   ralt ;;cop
 )
 
 (deflayer base
-  q     @ww   @ee   r     t               y     u     i     o     p
-  @aa   @ss   @dd   @ff   g               h   @jj   @kk   @ll @rmet
-  z     x     c     v     b     lrld      n     m     ,     .     /
-  lmet              lctl  @alt  @nav   @sym ;;cop
-;;laptop:           tab   bspc   spc    del   ret
+  q     @ww   @ee   r     t              XX    y     u     i     o     p
+  @aa   @ss   @dd   @ff   g              XX    h   @jj   @kk   @ll @rmet
+  z     x     c     v     b     lrld     XX    n     m     ,     .     /
+  @ctl                    @alt  @ctl   @sym ;;cop
+;;                  tab   bspc   spc    del   ret
 )
 
-(include defalias/ergol_pc.kbd)
-
 (deflayer nav
-  caps  C-z   C-r   bck   fwd          pgup   ins    up  home   end
-  lmet  lalt  lctl  lsft  @zoin        pgdn   lft  down  rght    XX
-  XX    XX    XX    XX    @zoot   _      XX    XX    XX    XX    XX
-  _                 _     _       _       _
+  XX    XX    XX    @zoin XX             XX  pgup    XX    up  home   end
+  XX    @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX
+  XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX    XX
+  XX                      _       _       _
+)
+
+(deflayer azerty
+  a     z     d     j     k               p     ;     l     e     r    XX
+  q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX
+  XX    t     x     w     v       b       f    XX      .   XX    XX    XX
+  _                       _       _       _
 )
 
 (defalias
-  ;; ;; Alt-Shit with arrowslayer-while-held
+  ;; Alt-Shit with arrows
   ww   (tap-hold       $tap_timeout $long_hold_timeout w (multi lalt lsft (layer-while-held nav)))
   ;; Ctrl-Shit with arrows
   ee   (tap-hold       $tap_timeout $long_hold_timeout e (multi lctl lsft (layer-while-held nav)))
 
-  aa   (tap-hold       $tap_timeout $long_hold_timeout a lmet)
+  ;; Home row mods
+  aa   (tap-hold       $tap_timeout $long_hold_timeout a (layer-while-held nav))
   ss   (tap-hold       $tap_timeout $long_hold_timeout s lalt)
   dd   (tap-hold       $tap_timeout $long_hold_timeout d lctl)
   ff   (tap-hold-press $tap_timeout $long_hold_timeout f lsft)
   jj   (tap-hold-press $tap_timeout $long_hold_timeout j lsft)
   kk   (tap-hold       $tap_timeout $long_hold_timeout k lctl)
   ll   (tap-hold       $tap_timeout $long_hold_timeout l lalt)
-  rmet (tap-hold       $tap_timeout $long_hold_timeout ; lmet)
-  
-  ctl  (tap-hold-press $tap_timeout $hold_timeout      tab  lctl)
+  rmet (tap-hold       $tap_timeout $long_hold_timeout ; (layer-while-held nav))
+
+  ;; Thumbs
   alt  (tap-hold-press $tap_timeout $hold_timeout      bspc lalt)
-  nav  (tap-hold-press $tap_timeout $hold_timeout      spc  (layer-while-held nav))
+  ctl  (tap-hold-press $tap_timeout $hold_timeout      spc  (multi lctl (layer-while-held azerty)))
   sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
 
+  ;; Nav
   zoin C-+
   zoot C-c
-  base (tap-hold       $tap_timeout $hold_timeout      spc  (layer-switch base))
+  nss  (tap-hold       $tap_timeout $long_hold_timeout bck lalt)
+  ndd  (tap-hold       $tap_timeout $long_hold_timeout fwd lctl)
+  nff  (tap-hold-press $tap_timeout $long_hold_timeout @zoot lsft)
 
-  alts (multi lalt lsft)
-  ctls (multi lctl lsft)
+  ;; Home row mods for azerty layer
+  css  (tap-hold       $tap_timeout $long_hold_timeout s lalt)
+  cff  (tap-hold-press $tap_timeout $long_hold_timeout g lsft)
+  cjj  (tap-hold-press $tap_timeout $long_hold_timeout / lsft)
+  cll  (tap-hold       $tap_timeout $long_hold_timeout u lalt)
 )
 
 (defchordsv2
