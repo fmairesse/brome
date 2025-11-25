@@ -18,10 +18,10 @@
   ;; Home row mods
   aa   (tap-hold       $tap_timeout $long_hold_timeout a (layer-while-held nav))
   ss   (tap-hold       $tap_timeout $long_hold_timeout s lalt)
-  dd   (tap-hold       $tap_timeout $long_hold_timeout d lctl)
+  dd   (tap-hold       $tap_timeout $long_hold_timeout d @azerctl)
   ff   (tap-hold-press $tap_timeout $long_hold_timeout f lsft)
   jj   (tap-hold-press $tap_timeout $long_hold_timeout j lsft)
-  kk   (tap-hold       $tap_timeout $long_hold_timeout k lctl)
+  kk   (tap-hold       $tap_timeout $long_hold_timeout k @azerctl)
   ll   (tap-hold       $tap_timeout $long_hold_timeout l lalt)
   rmet (tap-hold       $tap_timeout $long_hold_timeout ; (layer-while-held nav))
 
