@@ -16,14 +16,14 @@
   ee   (tap-hold       $tap_timeout $long_hold_timeout e (multi lalt lsft (layer-while-held nav)))
 
   ;; Home row mods
-  aa   (tap-hold       $tap_timeout $long_hold_timeout a lsft)
-  ss   (tap-hold       $tap_timeout $long_hold_timeout s lctl)
-  dd   (tap-hold       $tap_timeout $long_hold_timeout d lalt)
-  ff   (tap-hold-press $tap_timeout $long_hold_timeout f (layer-while-held nav))
-  jj   (tap-hold-press $tap_timeout $long_hold_timeout j (layer-while-held nav))
-  kk   (tap-hold       $tap_timeout $long_hold_timeout k lalt)
-  ll   (tap-hold       $tap_timeout $long_hold_timeout l lctl)
-  rmet (tap-hold       $tap_timeout $long_hold_timeout ; lsft)
+  aa   (tap-hold       $tap_timeout $long_hold_timeout a (layer-while-held nav))
+  ss   (tap-hold       $tap_timeout $long_hold_timeout s lalt)
+  dd   (tap-hold       $tap_timeout $long_hold_timeout d lctl)
+  ff   (tap-hold-press $tap_timeout $long_hold_timeout f lsft)
+  jj   (tap-hold-press $tap_timeout $long_hold_timeout j lsft)
+  kk   (tap-hold       $tap_timeout $long_hold_timeout k lctl)
+  ll   (tap-hold       $tap_timeout $long_hold_timeout l lalt)
+  rmet (tap-hold       $tap_timeout $long_hold_timeout ; (layer-while-held nav))
 
   ;; Thumbs
   alt  (tap-hold-press $tap_timeout $hold_timeout      bspc lalt)
@@ -32,9 +32,9 @@
 
   ;; Nav
   naa  lsft
-  nss  (tap-hold       $tap_timeout $long_hold_timeout bck lctl)
-  ndd  (tap-hold       $tap_timeout $long_hold_timeout fwd lalt)
-  nff  @zoot
+  nss  (tap-hold       $tap_timeout $long_hold_timeout bck lalt)
+  ndd  (tap-hold       $tap_timeout $long_hold_timeout fwd lctl)
+  nff  (tap-hold-press $tap_timeout $long_hold_timeout @zoot lsft)
 )
 
 (defcfg
