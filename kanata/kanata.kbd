@@ -1,13 +1,11 @@
-(defvar
-  ;; The key must be pressed twice in 200ms to enable repetitions.
-  tap_timeout       200
-  ;; The key must be held 200ms to become a layer shift.
-  hold_timeout      200
-  ;; Slightly higher value for typing keys, to prevent unexpected hold effect.
-  long_hold_timeout 300
-  chord_timeout     50
-  dance_timeout     200
+;; Needed by common
+(defalias
+  azerctl (multi lctl (layer-while-held azerty))
+  zoin C-+
+  zoot C-c
 )
+
+(include common.kbd)
 
 (defsrc
   q     w     e     r     t               y    u     i     o     p     [
@@ -39,34 +37,6 @@
 )
 
 (defalias
-  ;; Ctrl-Shit with arrows
-  ww   (tap-hold       $tap_timeout $long_hold_timeout w (multi lctl lsft (layer-while-held nav)))
-  ;; Alt-Shit with arrows
-  ee   (tap-hold       $tap_timeout $long_hold_timeout e (multi lalt lsft (layer-while-held nav)))
-
-  ;; Home row mods
-  aa   (tap-hold       $tap_timeout $long_hold_timeout a lsft)
-  ss   (tap-hold       $tap_timeout $long_hold_timeout s lctl)
-  dd   (tap-hold       $tap_timeout $long_hold_timeout d lalt)
-  ff   (tap-hold-press $tap_timeout $long_hold_timeout f (layer-while-held nav))
-  jj   (tap-hold-press $tap_timeout $long_hold_timeout j (layer-while-held nav))
-  kk   (tap-hold       $tap_timeout $long_hold_timeout k lalt)
-  ll   (tap-hold       $tap_timeout $long_hold_timeout l lctl)
-  rmet (tap-hold       $tap_timeout $long_hold_timeout ; lsft)
-
-  ;; Thumbs
-  alt  (tap-hold-press $tap_timeout $hold_timeout      bspc lalt)
-  ctl  (tap-hold-press $tap_timeout $hold_timeout      spc  (multi lctl (layer-while-held azerty)))
-  sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
-
-  ;; Nav
-  zoin C-+
-  zoot C-c
-  naa  lsft
-  nss  (tap-hold       $tap_timeout $long_hold_timeout bck lctl)
-  ndd  (tap-hold       $tap_timeout $long_hold_timeout fwd lalt)
-  nff  @zoot
-
   ;; Home row mods for azerty layer
   css  (tap-hold       $tap_timeout $long_hold_timeout s lalt)
   cff  (tap-hold-press $tap_timeout $long_hold_timeout g lsft)
@@ -81,13 +51,4 @@
   (w   e) tab  $chord_timeout first-release ()
   (o   p) bspc $chord_timeout first-release ()
   (l   ;) ret  $chord_timeout first-release ()
-)
-
-(defcfg
-  ;; Enabled makes kanata process keys that are not defined in defsrc
-  ;; Fixes altgr for Windows (see Arsenik issue #22)
-  process-unmapped-keys yes
-  windows-altgr cancel-lctl-press
-  concurrent-tap-hold true ;; for defchordsv2 to work
-  danger-enable-cmd false
 )
