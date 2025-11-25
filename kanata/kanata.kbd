@@ -11,29 +11,29 @@
   q     w     e     r     t               y    u     i     o     p     [
   a     s     d     f     g               h    j     k     l     ;     '
   <     z     x     c     v       b       n    m     ,     .     /  rsft
-  lctl                    lalt   spc   ralt ;;cop
+  lctl              lmet  lalt   spc   ralt ;;cop
 )
 
 (deflayer base
   q     @ww   @ee   r     t              XX    y     u     i     o     p
   @aa   @ss   @dd   @ff   g              XX    h   @jj   @kk   @ll @rmet
   z     x     c     v     b     lrld     XX    n     m     ,     .     /
-  @ctl                    @alt  @ctl   @sym ;;cop
-;;                  tab   bspc   spc    del   ret
+  @ctl              @met  @alt  @ctl   @sym ;;cop
+;;                        bspc   spc    del   ret
 )
 
 (deflayer nav
   XX    XX    XX    @zoin XX             XX  pgup    XX    up  home   end
   @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX
   XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX    XX
-  XX                      _       _       _
+  _                 _     _       _       _
 )
 
 (deflayer azerty
   a     z     d     j     k               p     ;     l     e     r    XX
   q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX
   XX    t     x     w     v       b       f    XX      .   XX    XX    XX
-  _                       _       _       _
+  _                 _     _       _       _
 )
 
 (defalias
@@ -42,6 +42,8 @@
   cff  (tap-hold-press $tap_timeout $long_hold_timeout g lsft)
   cjj  (tap-hold-press $tap_timeout $long_hold_timeout / lsft)
   cll  (tap-hold       $tap_timeout $long_hold_timeout u lalt)
+
+  met (multi lmet (layer-while-held azerty))
 )
 
 (defchordsv2
