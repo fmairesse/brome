@@ -11,9 +11,9 @@
 
 (defalias
   ;; Ctrl-Shit with arrows
-  ww   (tap-hold       $tap_timeout $long_hold_timeout w (multi lctl lsft (layer-while-held nav)))
+  ww   (tap-hold       $tap_timeout $long_hold_timeout w (multi lalt lsft (layer-while-held nav)))
   ;; Alt-Shit with arrows
-  ee   (tap-hold       $tap_timeout $long_hold_timeout e (multi lalt lsft (layer-while-held nav)))
+  ee   (tap-hold       $tap_timeout $long_hold_timeout e (multi lctl lsft (layer-while-held nav)))
 
   ;; Home row mods
   aa   (tap-hold       $tap_timeout $long_hold_timeout a (layer-while-held nav))
