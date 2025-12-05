@@ -9,14 +9,14 @@
 (include common.kbd)
 
 (defsrc
-  q     w     e     r     t               y    u     i     o     p     [
+  q     w     e     r     t               y    u     i     o     p     [     ]
   a     s     d     f     g               h    j     k     l     ;     '
   <     z     x     c     v       b       n    m     ,     .     /  rsft
   lctl              lmet  lalt   spc   ralt ;;cop
 )
 
 (deflayer base
-  q     @ww   @ee   r     t              XX    y     u     i     o     p
+  q     @ww   @ee   r     t              XX    y     u     i     o     p   ret
   @aa   @ss   @dd   @ff   g              XX    h   @jj   @kk   @ll @rmet
   z     x     c     v     b     lrld     XX    n     m     ,     .     /
   @ctl              @met  @alt  @ctl   @sym ;;cop
@@ -24,14 +24,14 @@
 )
 
 (deflayer nav
-  XX    XX    XX    @zoin XX             XX  pgup    home  up   end    XX
+  XX    XX    XX    @zoin XX             XX  pgup    home  up   end    XX    _
   @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX
   XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX    XX
   _                 _     _       _       _
 )
 
 (deflayer azerty
-  a     z     d     j     k               p     ;     l     e     r    XX
+  a     z     d     j     k               p     ;     l     e     r    XX    _
   q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX
   XX    t     x     w     v       b       f    XX      .   XX    XX    XX
   _                 _     _       _       _
@@ -50,8 +50,5 @@
 (defchordsv2
   ;; Map evil copilot key to Return
   (lsft lmet f23) ret 10 first-release ()
-  (q   w) esc  $chord_timeout first-release ()
-  (w   e) tab  $chord_timeout first-release ()
-  (o   p) bspc $chord_timeout first-release ()
   (l   ;) ret  $chord_timeout first-release ()
 )
