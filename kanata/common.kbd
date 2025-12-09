@@ -27,7 +27,7 @@
 
   ;; Thumbs
   alt  (tap-hold-press $tap_timeout $hold_timeout      bspc @azeralt)
-  ctl  (tap-hold-press $tap_timeout $hold_timeout      spc  @azerctl)
+  ctl  (tap-hold       $tap_timeout $hold_timeout      spc  @azerctl)
   sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
 
   ;; Nav
