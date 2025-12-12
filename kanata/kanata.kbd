@@ -10,14 +10,14 @@
 
 (defsrc
   q     w     e     r     t               y    u     i     o     p     [     ]
-  a     s     d     f     g               h    j     k     l     ;     '
+  a     s     d     f     g               h    j     k     l     ;     '     \
   <     z     x     c     v       b       n    m     ,     .     /  rsft
   lctl              lmet  lalt   spc   ralt ;;cop
 )
 
 (deflayer base
-  q     @ww   @ee   r     t              XX    y     u     i     o     p   ret
-  @aa   @ss   @dd   @ff   g              XX    h   @jj   @kk   @ll @rmet
+  q     @ww   @ee   r     t              XX    y     u     i     o     p  bspc
+  @aa   @ss   @dd   @ff   g              XX    h   @jj   @kk   @ll @rmet   ret
   z     x     c     v     b     lrld     XX    n     m     ,     .     /
   @ctl              @met  @alt  @ctl   @sym ;;cop
 ;;                        bspc   spc    del   ret
@@ -25,14 +25,14 @@
 
 (deflayer nav
   XX    XX    XX    @zoin XX             XX  pgup    home  up   end    XX    _
-  @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX
+  @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX    _
   XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX    XX
   _                 _     _       _       _
 )
 
 (deflayer azerty
   a     z     d     j     k               p     ;     l     e     r    XX    _
-  q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX
+  q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX    _
   XX    t     x     w     v       b       f    XX      .   XX    XX    XX
   _                 _     _       _       _
 )
