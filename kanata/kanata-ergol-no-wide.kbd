@@ -1,0 +1,50 @@
+;; Needed by common
+(defalias
+  azerctl (multi lctl (layer-while-held azerty))
+  azeralt (multi lalt (layer-while-held azerty))
+  zoin C-+
+  zoot C-c
+)
+
+(include common.kbd)
+(include no-wide-mod.kbd)
+
+(defsrc
+  q     w     e     r     t               y    u     i     o     p     [
+  a     s     d     f     g               h    j     k     l     ;     '
+  <     z     x     c     v       b       n    m     ,     .     /
+  lctl              lmet  lalt   spc   ralt rctl
+)
+
+(deflayer base
+  q     @ww   @ee   r     t               y     u     i     o     p  bspc
+  @aa   @ss   @dd   @ff   g               h   @jj   @kk   @ll @rmet   ret
+  z     x     c     v     b     lrld      n     m     ,     .     /
+  @lctl             @met  @alt  @lctl  @sym @rctl
+;;                        bspc   spc    ret   del
+)
+
+(deflayer nav
+  XX    XX    XX    @zoin XX           pgup  home    up   end    XX    _
+  @aa   @nss  @ndd  @nff  XX           pgdn   lft  down  rght    XX    _
+  XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX
+  _                 _     _       _       _     _
+)
+
+(deflayer azerty
+  a     z     d     j     k               p     ;     l     e     r    _
+  q     @css  i     @cff  ,               m     y  @cjj     h  @cll    _
+  XX    t     x     w     v       b       f    XX      .   XX    XX
+  _                 _     _       _       _     _
+)
+
+(defalias
+  ;; Home row mods for azerty layer
+  css  (tap-hold       $tap_timeout $long_hold_timeout s lalt)
+  cff  (tap-hold-press $tap_timeout $long_hold_timeout g lsft)
+  cjj  (tap-hold-press $tap_timeout $long_hold_timeout / lsft)
+  cll  (tap-hold       $tap_timeout $long_hold_timeout u lalt)
+
+  met (multi lmet (layer-while-held azerty))
+)
+
