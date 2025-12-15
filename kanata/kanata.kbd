@@ -9,17 +9,17 @@
 (include common.kbd)
 
 (defsrc
-  q     w     e     r     t               y    u     i     o     p     [     ]
-  a     s     d     f     g               h    j     k     l     ;     '     \
-  <     z     x     c     v       b       n    m     ,     .     /  rsft
-  lctl              lmet  lalt   spc   ralt ;;cop
+  q     w     e     r     t               y     u     i     o     p     [     ]
+  a     s     d     f     g               h     j     k     l     ;     '     \
+  <     z     x     c     v       b       n     m     ,     .     /  rsft
+  lctl              lmet  lalt   spc   ralt  rctl
 )
 
 (deflayer base
-  q     @ww   @ee   r     t              XX    y     u     i     o     p  bspc
-  @aa   @ss   @dd   @ff   g              XX    h   @jj   @kk   @ll @rmet   ret
-  z     x     c     v     b     lrld     XX    n     m     ,     .     /
-  @ctl              @met  @alt  @ctl   @sym ;;cop
+  q     @ww   @ee   r     t              XX     y     u     i     o     p  bspc
+  @aa   @ss   @dd   @ff   g              XX     h   @jj   @kk   @ll @rmet   ret
+  z     x     c     v     b     lrld     XX     n     m     ,     .     /
+  @lctl             @met  @alt  @lctl  @sym @rctl
 ;;                        bspc   spc    del   ret
 )
 
@@ -27,14 +27,14 @@
   XX    XX    XX    @zoin XX             XX  pgup    home  up   end    XX    _
   @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX    _
   XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX    XX
-  _                 _     _       _       _
+  _                 _     _       _       _     _
 )
 
 (deflayer azerty
   a     z     d     j     k               p     ;     l     e     r    XX    _
   q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX    _
   XX    t     x     w     v       b       f    XX      .   XX    XX    XX
-  _                 _     _       _       _
+  _                 _     _       _       _     _
 )
 
 (defalias
@@ -49,6 +49,6 @@
 
 (defchordsv2
   ;; Map evil copilot key to Return
-  (lsft lmet f23) ret 10 first-release ()
+  (lsft lmet f23) del 10 first-release ()
   (l   ;) ret  $chord_timeout first-release ()
 )

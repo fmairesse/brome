@@ -7,20 +7,21 @@
 )
 
 (include common.kbd)
+(include no-wide-mod.kbd)
 
 (defsrc
   q     w     e     r     t               y     u     i     o     p
   a     s     d     f     g               h     j     k     l     ;
   z     x     c     v     b               n     m     ,     .     /
-                          lalt   spc   ralt ;;cop
+                          lalt   spc   ralt  rctl
 )
 
 (deflayer base
   q     @ww   @ee   r     t               y     u     i     o     p
   @aa   @ss   @dd   @ff   g               h   @jj   @kk   @ll @rmet
   z     x     c     v     b               n     m     ,     .     /
-                          @alt  @ctl   @sym ;;cop
-;;laptop:                 bspc   spc    del   ret
+                          @alt  @ctl   @sym @rctl
+;;                        bspc   spc    ret   del
 )
 
 (deflayer nav
@@ -28,10 +29,4 @@
   @naa  @nss  @ndd  @nff   XX           pgdn  lft  down  rght    XX
   XX    XX    XX    XX    lrld           XX    XX    XX    XX    XX
                           _       _       _
-)
-
-(defchordsv2
-  ;; Map evil copilot key to Return
-  (lsft lmet f23) ret 10 first-release ()
-  (k   l) ret  $chord_timeout first-release ()
 )

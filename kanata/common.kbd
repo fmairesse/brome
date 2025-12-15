@@ -26,9 +26,10 @@
   rmet (tap-hold       $tap_timeout $long_hold_timeout ; (layer-while-held nav))
 
   ;; Thumbs
-  alt  (tap-hold-press $tap_timeout $hold_timeout      bspc @azeralt)
-  ctl  (tap-hold       $tap_timeout $hold_timeout      spc  @azerctl)
-  sym  (tap-hold-press $tap_timeout $hold_timeout      del  ralt)
+  alt   (tap-hold-press $tap_timeout $hold_timeout      bspc @azeralt)
+  lctl  (tap-hold       $tap_timeout $hold_timeout      spc  @azerctl)
+  sym   (tap-hold-press $tap_timeout $hold_timeout      ret  ralt)
+  rctl  (tap-hold       $tap_timeout $hold_timeout      del  @azerctl)
 
   ;; Nav
   naa  lsft
