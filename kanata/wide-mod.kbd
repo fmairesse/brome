@@ -1,0 +1,6 @@
+
+(defchordsv2
+  ;; Map evil copilot key to Return
+  (lsft lmet f23) ret 10 first-release ()
+  (l   ;) ret  $chord_timeout first-release ()
+)

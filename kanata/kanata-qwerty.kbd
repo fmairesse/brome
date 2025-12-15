@@ -7,6 +7,7 @@
 )
 
 (include common.kbd)
+(include wide-mod.kbd)
 
 (defsrc
   q     w     e     r     t               y     u     i     o     p     [     ]
@@ -30,8 +31,3 @@
                           _       _       _     _
 )
 
-(defchordsv2
-  ;; Map evil copilot key to Return
-  (lsft lmet f23) del 10 first-release ()
-  (l   ;) ret  $chord_timeout first-release ()
-)
