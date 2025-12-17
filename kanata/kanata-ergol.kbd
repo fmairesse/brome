@@ -25,8 +25,8 @@
 )
 
 (deflayer nav
-  XX    XX    XX    @zoin XX             XX  pgup    home  up   end    XX
-  @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX
+  esc   XX    XX    @zoin XX             XX  pgup  home    up   end   esc
+  tab   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght   tab
   XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX    XX
   _                 _     _       _       _     _
 )
