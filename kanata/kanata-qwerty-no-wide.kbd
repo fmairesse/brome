@@ -10,23 +10,23 @@
 (include no-wide-mod.kbd)
 
 (defsrc
-  q     w     e     r     t               y    u     i     o     p     [
-  a     s     d     f     g               h    j     k     l     ;     '
+  q     w     e     r     t               y    u     i     o     p
+  a     s     d     f     g               h    j     k     l     ;
   z     x     c     v     b               n    m     ,     .     / 
                           lalt   spc   ralt rctl
 )
 
 (deflayer base
-  q     @ww   @ee   r     t               y     u     i     o     p bspc
-  @aa   @ss   @dd   @ff   g               h   @jj   @kk   @ll @rmet  ret
+  q     @ww   @ee   r     t               y     u     i     o     p
+  @aa   @ss   @dd   @ff   g               h   @jj   @kk   @ll @rmet
   z     x     c     v     b               n     m     ,     .     /
                           @alt  @lctl  @sym @rctl
 ;;                        bspc   spc    ret   del
 )
 
 (deflayer nav
-  XX    XX    XX    @zoin XX           pgup    home  up   end    XX    _
-  @aa   @nss  @ndd  @nff  XX           pgdn   lft  down  rght    XX    _
+  XX    XX    XX    @zoin XX           pgup    home  up   end    XX
+  @aa   @nss  @ndd  @nff  XX           pgdn   lft  down  rght    XX
   XX    XX    XX    XX    lrld           XX    XX    XX    XX    XX
                           _       _       _     _
 )

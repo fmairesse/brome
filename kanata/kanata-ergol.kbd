@@ -10,30 +10,30 @@
 (include wide-mod.kbd)
 
 (defsrc
-  q     w     e     r     t               y     u     i     o     p     [     ]
-  a     s     d     f     g               h     j     k     l     ;     '     \
+  q     w     e     r     t               y     u     i     o     p     [
+  a     s     d     f     g               h     j     k     l     ;     '
   <     z     x     c     v       b       n     m     ,     .     /  rsft
   lctl              lmet  lalt   spc   ralt  rctl
 )
 
 (deflayer base
-  q     @ww   @ee   r     t              XX     y     u     i     o     p  bspc
-  @aa   @ss   @dd   @ff   g              XX     h   @jj   @kk   @ll @rmet   ret
+  q     @ww   @ee   r     t              XX     y     u     i     o     p
+  @aa   @ss   @dd   @ff   g              XX     h   @jj   @kk   @ll @rmet
   z     x     c     v     b     lrld     XX     n     m     ,     .     /
   @lctl             @met  @alt  @lctl  @sym @rctl
 ;;                        bspc   spc    del   ret
 )
 
 (deflayer nav
-  XX    XX    XX    @zoin XX             XX  pgup    home  up   end    XX    _
-  @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX    _
+  XX    XX    XX    @zoin XX             XX  pgup    home  up   end    XX
+  @aa   @nss  @ndd  @nff  XX             XX  pgdn   lft  down  rght    XX
   XX    XX    XX    XX    XX      _      XX    XX    XX    XX    XX    XX
   _                 _     _       _       _     _
 )
 
 (deflayer azerty
-  a     z     d     j     k               p     ;     l     e     r    XX    _
-  q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX    _
+  a     z     d     j     k               p     ;     l     e     r    XX
+  q     @css  i     @cff  ,               m     y  @cjj     h  @cll    XX
   XX    t     x     w     v       b       f    XX      .   XX    XX    XX
   _                 _     _       _       _     _
 )
