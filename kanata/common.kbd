@@ -17,19 +17,19 @@
 
   ;; Home row mods
   aa   (tap-hold       $tap_timeout $long_hold_timeout a (layer-while-held nav))
-  ss   (tap-hold       $tap_timeout $long_hold_timeout s @azeralt)
-  dd   (tap-hold       $tap_timeout $long_hold_timeout d @azerctl)
+  ss   (tap-hold       $tap_timeout $long_hold_timeout s @shortcutsalt)
+  dd   (tap-hold       $tap_timeout $long_hold_timeout d @shortcutsctl)
   ff   (tap-hold-press $tap_timeout $long_hold_timeout f lsft)
   jj   (tap-hold-press $tap_timeout $long_hold_timeout j rsft)
-  kk   (tap-hold       $tap_timeout $long_hold_timeout k @azerctl)
-  ll   (tap-hold       $tap_timeout $long_hold_timeout l @azeralt)
+  kk   (tap-hold       $tap_timeout $long_hold_timeout k @shortcutsctl)
+  ll   (tap-hold       $tap_timeout $long_hold_timeout l @shortcutsalt)
   rmet (tap-hold       $tap_timeout $long_hold_timeout ; (layer-while-held nav))
 
   ;; Thumbs
-  alt   (tap-hold-press $tap_timeout $hold_timeout      bspc @azeralt)
-  lctl  (tap-hold       $tap_timeout $hold_timeout      spc  @azerctl)
+  alt   (tap-hold-press $tap_timeout $hold_timeout      bspc @shortcutsalt)
+  lctl  (tap-hold       $tap_timeout $hold_timeout      spc  @shortcutsctl)
   sym   (tap-hold-press $tap_timeout $hold_timeout      ret  ralt)
-  rctl  (tap-hold       $tap_timeout $hold_timeout      del  @azerctl)
+  rctl  (tap-hold       $tap_timeout $hold_timeout      del  @shortcutsctl)
 
   ;; Nav
   naa  lsft

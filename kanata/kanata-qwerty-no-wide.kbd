@@ -1,7 +1,7 @@
 ;; Needed by common
 (defalias
-  azerctl lctl
-  azeralt lalt
+  shortcutsctl lctl
+  shortcutsalt lalt
   zoin C-+
   zoot C--
 )
