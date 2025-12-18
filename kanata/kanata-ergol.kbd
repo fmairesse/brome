@@ -1,7 +1,7 @@
 ;; Needed by common
 (defalias
-  shortcutsctl (multi lctl (layer-while-held azerty))
-  shortcutsalt (multi lalt (layer-while-held azerty))
+  shortcutsctl (multi lctl (layer-while-held qwerty))
+  shortcutsalt (multi lalt (layer-while-held qwerty))
   zoin C-+
   zoot C-c
 )
@@ -38,13 +38,20 @@
   _                 _     _       _       _     _
 )
 
+(deflayer qwerty
+  q     t     d     j     k               XX    p     ;     l     e     r
+  a     @css  i     @cff  ,               XX    m     y  @cjj     h  @cll
+  XX    z     x     w     v       b       XX    f     u    XX     .    XX
+  _                 _     _       _       _     _
+)
+
 (defalias
-  ;; Home row mods for azerty layer
+  ;; Home row mods for qwerty layer
   css  (tap-hold       $tap_timeout $long_hold_timeout s lalt)
   cff  (tap-hold-press $tap_timeout $long_hold_timeout g lsft)
   cjj  (tap-hold-press $tap_timeout $long_hold_timeout / lsft)
   cll  (tap-hold       $tap_timeout $long_hold_timeout u lalt)
 
-  met (multi lmet (layer-while-held azerty))
+  met (multi lmet (layer-while-held qwerty))
 )
 
