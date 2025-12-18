@@ -1,7 +1,7 @@
 ;; Needed by common
 (defalias
-  azerctl (multi lctl (layer-while-held azerty))
-  azeralt (multi lalt (layer-while-held azerty))
+  shortcutsctl (multi lctl (layer-while-held azerty))
+  shortcutsalt (multi lalt (layer-while-held azerty))
   zoin C-+
   zoot C-c
 )
